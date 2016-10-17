@@ -45,9 +45,11 @@ Now you're ready to use it inside your render method:
 ```javascript
 <SimpleForm
   formName="testForm"
-  endpoint="https://localhost:10000/your/reast/api/endpoint"
-  Name="*"
-  Phone            
+  endpoint="https://localhost:10000/your/rest/api/endpoint"
+  fields={[
+    "name: |Jane Doe",
+    "phone: *tel|+44 207 123 4567|Enter your phone number|Phone Number",
+  ]}        
 />
 ```
 
@@ -60,7 +62,7 @@ Refer to [SimpleForm](https://www.npmjs.com/package/simpleform) documentation on
 - `endpoint` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** RESTful API endpoint that is responsible for processing the form data. **Required**.
 - `formName` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** A name that would be used to distinguish the form from other forms in the Redux store. Defaults to "redux-form". **Optional**.
 - `onResponse` **[function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)** Async function that is responsible for processing server response. **Optional**.
-- `onFormWillFetch` **[function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)** Function that is called just before form will be uploaded. It gets one argument (form data object) and must return transformed form data object. **Optional**.
+- `onFormWillFetch` **[function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)** Function that is called just before form will be sent to the endpoint. It gets one argument (form data object) and must return transformed form data object. **Optional**.
 - `waitText` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** Text displayed when form is being uploaded . Defaults to "Uploading form. Please wait ...". **Optional**.
 - `errorText` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** Text displayed when form has encountered errors on upload. Defaults to "Houston, we have a problem!". **Optional**.
 - `successText` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** Text displayed when form is uploaded without any issues. Defaults to "Your form has been submitted successfully". **Optional**.
@@ -127,8 +129,10 @@ class App extends Component {
             store={store} 
             formName="testForm"
             endpoint="https://localhost:10000/your/reast/api/endpoint"
-            Name="*"
-            Phone            
+            fields={[
+              "name: |Jane Doe",
+              "phone: *tel|+44 207 123 4567|Enter your phone number|Phone Number",
+            ]}
           />
         </div>
       </div>

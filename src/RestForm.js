@@ -92,7 +92,6 @@ class RestForm extends Component {
       welcomeText,
       scrollOrigin,
       formType,
-      isDisplayed,
       ...props
     } = this.props;
     if (typeof formMsg === 'string') {

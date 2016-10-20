@@ -1,6 +1,6 @@
 {
   "name": "redux-simpleform",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Roman Nosov <rnosov@gmail.com>",
   "description": "Quickly auto generate simple React forms styled with Bootstrap 4",
   "license": "MIT",

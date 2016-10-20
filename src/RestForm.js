@@ -19,6 +19,7 @@ const
     setStatus: PropTypes.func.isRequired,
     onResponse: PropTypes.func,
     onFormWillFetch: PropTypes.func,
+    fetchFunc: PropTypes.func,
     waitText: PropTypes.string,
     errorText: PropTypes.string,
     successText: PropTypes.string,
@@ -51,7 +52,11 @@ class RestForm extends Component {
   async handleApiCall(form) {
     if (this.props.onFormWillFetch)
       form = await this.props.onFormWillFetch(form);
-    const response = await this.jsonFetch(form);
+    const response = await  (typeof this.props.fetchFunc === 'function'
+                              ? this.props.fetchFunc(form)
+                              : this.jsonFetch(form)
+                            );
+
     if (response.status < 200 || response.status >= 300)
       throw new Error(`${response.status} (${response.statusText})`);
     return  typeof this.props.onResponse === 'function'
@@ -92,6 +97,7 @@ class RestForm extends Component {
       welcomeText,
       scrollOrigin,
       formType,
+      fetchFunc,
       ...props
     } = this.props;
     if (typeof formMsg === 'string') {
